@@ -77,6 +77,20 @@ var (
 		    create_by VARCHAR(255) NOT NULL DEFAULT ''
 		);
 	`,
+		"bots": `
+		CREATE TABLE IF NOT EXISTS bots (
+			id INTEGER PRIMARY KEY AUTOINCREMENT,
+			name VARCHAR(255) NOT NULL DEFAULT '',
+			type VARCHAR(50) NOT NULL DEFAULT '',
+			app_id VARCHAR(255) NOT NULL DEFAULT '',
+			app_secret VARCHAR(255) NOT NULL DEFAULT '',
+			token VARCHAR(255) NOT NULL DEFAULT '',
+			status INTEGER NOT NULL DEFAULT 0, -- 0:stopped 1:running
+			create_time INTEGER NOT NULL DEFAULT '0',
+			update_time INTEGER NOT NULL DEFAULT '0',
+			is_deleted INTEGER NOT NULL DEFAULT '0'
+		);
+	`,
 	}
 	
 	mysqlInitializeSQLs = []string{
@@ -146,6 +160,19 @@ var (
           from_bot VARCHAR(255) NOT NULL DEFAULT '',
           type VARCHAR(255) NOT NULL DEFAULT '',
     	  create_by VARCHAR(255) NOT NULL DEFAULT ''
+       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+	`,
+		`CREATE TABLE IF NOT EXISTS bots (
+          id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+          name VARCHAR(255) NOT NULL DEFAULT '',
+          type VARCHAR(50) NOT NULL DEFAULT '',
+          app_id VARCHAR(255) NOT NULL DEFAULT '',
+          app_secret VARCHAR(255) NOT NULL DEFAULT '',
+          token VARCHAR(255) NOT NULL DEFAULT '',
+          status tinyint(1) NOT NULL DEFAULT 0 COMMENT '0:stopped 1:running',
+          create_time INT(10) NOT NULL DEFAULT 0,
+          update_time INT(10) NOT NULL DEFAULT 0,
+          is_deleted INT(10) NOT NULL DEFAULT 0
        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 	`,
 	}

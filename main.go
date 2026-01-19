@@ -25,9 +25,11 @@ func main() {
 	db.InitTable()
 	conf.InitTools()
 	rag.InitRag()
+	robot.InitBotManager()
 	http.InitHTTP()
 	metrics.RegisterMetrics()
 	robot.StartRobot()
+	robot.GlobalBotManager.LoadAllBots()
 	register.InitRegister()
 	robot.InitCron()
 	

@@ -90,6 +90,11 @@ func (p *HTTPServer) Start() {
 		mux.HandleFunc("/cron/delete", DeleteCron)
 		mux.HandleFunc("/cron/list", GetCrons)
 		
+		mux.HandleFunc("/bot/create", CreateBot)
+		mux.HandleFunc("/bot/start", StartBot)
+		mux.HandleFunc("/bot/stop", StopBot)
+		mux.HandleFunc("/bot/list", ListBots)
+		
 		mux.HandleFunc("/image", imageHandler)
 		
 		wrappedMux := WithRequestContext(mux)
