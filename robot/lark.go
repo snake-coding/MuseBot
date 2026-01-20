@@ -294,6 +294,16 @@ func (l *LarkRobot) createInitialStreamingCard() (string, error) {
 					"content":    "正在思考...",
 					"element_id": "streaming_txt",
 				},
+				map[string]interface{}{"tag": "hr"},
+				map[string]interface{}{
+					"tag": "div",
+					"text": map[string]interface{}{
+						"tag":        "plain_text",
+						"content":    "由青藤云安全提供技术支持",
+						"text_size":  "notation",
+						"text_color": "grey",
+					},
+				},
 			},
 		},
 	}
@@ -322,6 +332,16 @@ func (l *LarkRobot) transitionToAnswerPhase(cardID string, finalThinking string,
 				"tag":        "markdown",
 				"content":    "正在回答...",
 				"element_id": "answer_txt",
+			},
+			map[string]interface{}{"tag": "hr"},
+			map[string]interface{}{
+				"tag": "div",
+				"text": map[string]interface{}{
+					"tag":        "plain_text",
+					"content":    "由青藤云安全提供技术支持",
+					"text_size":  "notation",
+					"text_color": "grey",
+				},
 			},
 		},
 	}

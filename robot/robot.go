@@ -152,7 +152,8 @@ func (r *RobotInfo) Exec() {
 		return
 	}
 
-	if r.AddUserInfo() && r.Robot.checkValid() && r.smartMode() {
+	// if r.AddUserInfo() && r.Robot.checkValid() && r.smartMode() {
+	if r.AddUserInfo() && r.Robot.checkValid() {
 		r.Robot.requestLLM(r.Robot.getMsgContent())
 	}
 }
@@ -385,7 +386,7 @@ func (r *RobotInfo) SendMsg(chatId string, msgContent string, replyToMessageID s
 		return timestamp
 	case *LarkRobot:
 		lark := r.Robot.(*LarkRobot)
-		
+
 		if replyToMessageID != "" {
 			resp, err := lark.Client.Im.Message.Reply(r.Ctx, larkim.NewReplyMessageReqBuilder().
 				MessageId(replyToMessageID).
@@ -398,7 +399,7 @@ func (r *RobotInfo) SendMsg(chatId string, msgContent string, replyToMessageID s
 				logger.WarnCtx(r.Ctx, "send message fail", "err", err, "resp", resp)
 				return ""
 			}
-			
+
 			return *resp.Data.MessageId
 		} else {
 			resp, err := lark.Client.Im.Message.Create(r.Ctx, larkim.NewCreateMessageReqBuilder().
@@ -413,7 +414,7 @@ func (r *RobotInfo) SendMsg(chatId string, msgContent string, replyToMessageID s
 				logger.ErrorCtx(r.Ctx, "send message fail", "err", err, "resp", resp)
 				return ""
 			}
-			
+
 			return *resp.Data.MessageId
 		}
 
